@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
     if user
       redirect_to root_url, notice: "Logged in!"
     else
-      redirect_to login_url, notice: "Email or password was invalid"
+      redirect_to new_session_url, notice: "Email or password was invalid"
     end
   end
 
   def destroy
     logout
-    redirect_to login_url, notice: "Logged out!"
+    redirect_to new_session_url, notice: "Logged out!"
   end
 
 end

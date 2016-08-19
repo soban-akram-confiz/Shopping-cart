@@ -4,7 +4,6 @@ class ShoppingCartController < ApplicationController
 
   def index
     @cart = current_user.shopping_cart
-
   end
 
   def add_to_cart

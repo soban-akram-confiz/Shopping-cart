@@ -4,7 +4,7 @@
 <% end %>
 <br/>
 
-<% if can? :manage, @product %>
+<% if current_user %>
     <%= link_to 'Cart', shopping_cart_index_path %>
 <% end %>
 <br/>
