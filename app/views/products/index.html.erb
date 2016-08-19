@@ -1,0 +1,36 @@
+
+<% if can? :manage, @category %>
+    <%= link_to 'Categories', categories_path %>
+<% end %>
+<br/>
+
+<% if can? :manage, @product %>
+    <%= link_to 'Cart', shopping_cart_index_path %>
+<% end %>
+<br/>
+
+<% if can? :manage, @product %>
+	<%= link_to 'Add Product', new_product_path %>
+<% end %>
+<br/>
+
+<%= form_tag(search_products_path, method: 'get') do %>
+
+      <div class="field">
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search" %>
+      </div>
+<% end %>
+
+	<h1>All Products</h1>
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+      <th>Quantity</th>
+			<th colspan="2"></th>
+		</tr>
+
+    <%= render(@products) || 'There are no products available.' %>
+	</table>

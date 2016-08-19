@@ -1,0 +1,19 @@
+<h1><%= @product.title %></h1>
+<%= link_to 'Add to Cart', add_shopping_cart_path(@product) %>
+
+<h5>Images</h5>
+<ul>
+  <% @product.photos.each do |photo| %>
+      <%= image_tag(photo.image.url(:small)) %>
+  <% end %>
+</ul>
+
+<h4>Category: <%= @product.category.name %></h4>
+
+<h4>Price: <%= @product.price %></h4>
+
+<h4>Description</h4>
+<p>
+	<%= @product.description %>
+</p>
+

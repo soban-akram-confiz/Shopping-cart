@@ -1,0 +1,18 @@
+
+<h4> Name: <strong><%= @category.name %></strong></h4>
+
+<% if @category.subcategories.count == 0 %>
+    <h4>No Subcategory Found.</h4>
+<% else %>
+    <h5>Sub Categories</h5>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th colspan="2"></th>
+      </tr>
+
+      <%= render(@category.subcategories) %>
+    </table>
+<% end %>

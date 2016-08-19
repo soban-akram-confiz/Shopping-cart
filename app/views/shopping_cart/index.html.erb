@@ -1,0 +1,19 @@
+<h1>Shopping Cart</h1>
+
+<% if @cart.nil? || @cart.shopping_cart_items.nil? %>
+    <h4>No Item in Cart</h4>
+<% else %>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th colspan="2"></th>
+    </tr>
+
+    <%= render partial: 'shopping_cart_item', collection: @cart.shopping_cart_items %>
+  </table>
+
+    <h4>Total Amount: <%= @cart.total %></h4>
+<% end %>

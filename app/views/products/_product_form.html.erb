@@ -1,0 +1,89 @@
+<%= form_for @product, :html => {:multipart => true} do |f| %>
+
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:
+          </h3>
+
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </p>
+
+    <p>
+      <%= f.label :price %><br>
+      <%= f.number_field :price %>
+    </p>
+
+    <p>
+      <%= f.label :quantity %><br>
+      <%= f.number_field :quantity %>
+    </p>
+
+    <p>
+      <%= f.label :category_id %>
+      <%= collection_select(:category, :parent_category_id, Category.where(parent_category_id: nil), :id, :name, prompt: "Select Category") %>
+    </p>
+
+    <p>
+      <label>Subcategory</label>
+      <%= f.collection_select(:category_id, [], :id, :name, prompt: "Select Subcategory") %>
+    </p>
+
+    <h4>File Upload</h4>
+
+    <%= f.fields_for :photos do |photo_fields| %>
+        <p><%= photo_fields.file_field :image %></p>
+    <% end %>
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>
+
+<script>
+  $(document).ready(function () {
+    $('select#category_parent_category_id').change(function (obj) {
+      var value = this.options[this.selectedIndex].value;
+      $.ajax({
+        url: ("/categories/" + value + "/get_subcategories/"),
+        dataType: "json",
+        method: 'get',
+        // This is the function to call when ajax succeed
+        success: function (data) {
+          //$('select#product_category_id')[0].options = data;
+          $('select#product_category_id')
+              .find('option')
+              .remove()
+              .end();
+
+          $('select#product_category_id')
+              .append($("<option></option>")
+                  .attr("value", '')
+                  .text('Select Subcategory'));
+
+          $.each(data, function (key, value) {
+            $('select#product_category_id')
+                .append($("<option></option>")
+                    .attr("value", value['id'])
+                    .text(value['text']));
+          });
+        }
+      });
+    });
+  });
+</script>
