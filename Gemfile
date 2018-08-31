@@ -51,7 +51,7 @@ gem 'sorcery'
 # admin rights
 gem 'cancancan', '~> 1.10'
 # Images
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 # Cart
 gem 'acts_as_shopping_cart', '~> 0.4.0'
 # Soft Delete
