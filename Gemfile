@@ -56,4 +56,3 @@ gem "paperclip", "~> 5.0.0"
 gem 'acts_as_shopping_cart', '~> 0.4.0'
 # Soft Delete
 gem 'permanent_records', '~> 4.1', '>= 4.1.7'
-

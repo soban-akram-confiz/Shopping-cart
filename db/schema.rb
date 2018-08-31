@@ -29,14 +29,6 @@ ActiveRecord::Schema.define(version: 20160818122259) do
     t.index ["product_id"], name: "index_photos_on_product_id"
   end
 
-  create_table "pictures", force: :cascade do |t|
-    t.integer  "product_id"
-    t.string   "path"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_pictures_on_product_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
